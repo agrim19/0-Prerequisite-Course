@@ -1,0 +1,7 @@
+a{
+    background-color: #14914f ;
+    /* box model things */
+    border: 2px solid black;
+    margin: 100px;
+    padding:100px;
+}

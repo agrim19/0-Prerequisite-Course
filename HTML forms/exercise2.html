@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Form Exercise</title>
+    </head>
+    <body>
+
+        <!-- main heading of the page -->
+        <h1>Birth Month Survey form</h1>
+
+        <!-- short description -->
+        <p>
+            This is a form created for a sample survey to determine the number of people having birthdays in October city-wise. The user gets registered on the platform for further updates if he enters the password
+        </p>
+        <!-- main form tag -->
+        <form>
+            <!-- name of user -->
+            <label for="name">Name: </label>
+            <input type="text" placeholder="Name" id="name" required>
+            <br><br>
+
+            <!-- birth month of user -->
+            <label for="month">Birth Month: </label> 
+            <input type="month" id="month" required>
+            <br><br>
+
+            <!-- city of user -->
+            <label for="city">City:</label>
+            <input type="text" placeholder="City" id="city" required>
+            <br><br>
+
+            <!-- password of user -->
+            <label for="password">Password(optional): </label>
+            <input type="password" placeholder="Password" id="password">
+            <br><br>
+
+            <input type="submit" value="Give Data">
+        </form>
+    </body>
+</html>
