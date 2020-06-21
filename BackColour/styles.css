@@ -1,0 +1,30 @@
+.jumbotron{
+    background-color: rgb(58, 50, 50);
+}
+h1{
+    font-size: 3.7rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(144, 143, 202);
+}
+.colourBox{
+    height:250px;
+    width:250px;
+    background-color: yellow;
+    margin: 20px auto;
+    border-radius:10%;
+}
+.btn{
+    display:none;
+}
+
+.colourBox:hover button{
+    display:inline-block;
+}
+
+button:hover{
+    background-color:green;
+}
+
+body{
+    background-color:rgb(144, 143, 202);
+}
