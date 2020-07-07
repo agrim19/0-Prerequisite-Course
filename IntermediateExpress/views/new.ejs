@@ -1,0 +1,13 @@
+<%- include('./partials/header.ejs') %>
+
+<h1>
+	Add new Fruit
+</h1>
+
+<form action="/add" method="POST">
+	<label for="fruit">Enter new Fruit:</label>
+	<input type="text" name="fruit" id="fruit">
+	<input type="submit" value="Add Fruit">
+</form>
+
+<%- include('./partials/footer.ejs') %>

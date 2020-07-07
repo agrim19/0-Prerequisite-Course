@@ -1,0 +1,16 @@
+<%- include('./partials/header.ejs') %>
+
+<h1>
+	Post Demo using fruits
+</h1>
+<ul>
+	<% values.forEach((fruit)=>{ %>
+		<li>
+			<%= fruit %>
+		</li>
+	<% }); %>
+</ul>
+
+<a href="/add">Add New Fruit</a>
+
+<%- include('./partials/footer.ejs') %>

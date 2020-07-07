@@ -1,0 +1,28 @@
+<%- include('./partials/header.ejs') %>
+<h1>Finally linked a document!!!!</h1>
+<p>
+	This is a pargraph
+</p>
+
+<% if(value>5) { %>
+	<p>
+		Value is greater than 5
+	</p>
+<% } else if(value == 5) { %>
+	<p>
+		Value is 5	
+	</p>
+<% } else { %>
+	<p>
+		Value is less than 5
+	</p>
+<% } %>
+
+
+<% for(var i=0;i<10;++i) { %>
+	<p>
+		<%= value+i %>	
+	</p>
+<% } %>
+
+<%- include('./partials/footer.ejs') %>
