@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+
+<h1>
+	This is the Index File
+</h1>
+
+<ul>
+	<% data.forEach((item)=>{ %>
+		<li>
+			<h3>
+				<a href='/blogs/<%= item._id %>' ><%= item.title %></a>
+			</h3>
+			<ul>
+				<li>
+					<%= item.content %>
+				</li>
+			</ul>
+		</li>
+	<% }) %>	
+</ul>
+
+<%- include('partials/footer.ejs') %>
