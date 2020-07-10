@@ -1,16 +1,23 @@
 <%- include('partials/header.ejs') %>
+<%- include('./partials/header-close.ejs') %>
+
 <h1>
-	This is the New Blog Page
+	Add A Blog
 </h1>
+<hr>
 
 <form action="/blogs" method="POST">
-	<label for="title">Title:</label>
-	<input type="text" name="title" id="title">
+	<div class="form-group">
+		<label for="title">Title:</label>
+		<input type="text" name="title" class="form-control" id="title" placeholder="Title of the Blog">
+  	</div>
 	
-	<label for="content">Content:</label>
-	<input type="text" name="content" id="content">
+	<div class='form-group'>
+		<label for="content">Content:</label>
+		<input type="text" name="content" id="content" class="form-control" placeholder="Content of the blog">
+	</div>	
 	
-	<button>
+	<button class='btn btn-success'>
 		Add Post
 	</button>
 </form>

@@ -1,5 +1,5 @@
 <%- include('partials/header') %>
-
+<%- include('./partials/header-close.ejs') %>
 
 <h1>
 	This is the Index File
@@ -9,7 +9,7 @@
 	<% data.forEach((item)=>{ %>
 		<li>
 			<h3>
-				<a href='/blogs/<%= item._id %>' ><%= item.title %></a>
+				<%= item.title %>
 			</h3>
 			<ul>
 				<li>
