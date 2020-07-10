@@ -1,23 +1,31 @@
 <%- include('partials/header') %>
+<link rel="stylesheet" href="/stylesheets/index.css">
 <%- include('./partials/header-close.ejs') %>
 
-<h1>
-	This is the Index File
-</h1>
-
-<ul>
+<div class="jumbotron d-flex align-items-center justify-content-center">
+	<h1>
+		Explore Blogify
+	</h1>
+</div>
+<div class="container">
 	<% data.forEach((item)=>{ %>
-		<li>
-			<h3>
-				<%= item.title %>
-			</h3>
-			<ul>
-				<li>
-					<%= item.content %>
-				</li>
-			</ul>
-		</li>
-	<% }) %>	
-</ul>
-
+	<div class="outer">
+		<div class="card mb-3">
+			<div class="row no-gutters">
+				<div class="col-md-4">
+					<img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+						class="card-img" alt="...">
+				</div>
+				<div class="col-md-8 d-flex">
+					<div class="card-body">
+						<h5 class="card-title"><%= item.title %></h5>
+						<p class="card-text"><%= item.content %></p>
+					</div>
+					<a href="/blogs/<%= item._id %>" class="btn btn-success align-self-end">Read More</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% }) %>
+</div>
 <%- include('partials/footer.ejs') %>
