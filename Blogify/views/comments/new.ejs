@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/stylesheets/comments/new.css">
+<%- include('../partials/header-close') %>
+
+<h1>Add a Comment to <%= blog.title %> </h1>
+<form action='/blogs/<%= blog._id%>/comments' method='POST'>
+    <div class="form-group">
+        <label for='author'>Author Name:</label>
+        <input type="text" id="author" name="author" placeholder="John Doe" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for='content'>Comment:</label>
+        <textarea id="content" name="content" placeholder="Loved the site!" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-success">Add Comment</button>
+</form>
+
+
+<%- include('../partials/footer') %>
