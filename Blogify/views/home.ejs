@@ -6,22 +6,22 @@
 		Welcome To Blogify
 	</h1>
 </div>
-	
+
 <div class="container">
-	
-	<div class="row">		
+
+	<div class="row">
 		<% data.forEach((item)=>{ %>
 		<div class="col-4" style="margin-bottom: 10px">
 			<div class="card">
-			  <img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" class="card-img-top" alt="...">
-			  <div class="card-body">
-				<h5 class="card-title"><a href='/blogs/<%= item._id %>' ><%= item.title %></a></h5>
-				<p class="card-text"><%= item.content %></p>
-				<a href="/blogs/<%= item._id %>" class="btn btn-small btn-primary">Read More</a>
-			  </div>	
+				<img src="<%= item.image %> " class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title"><a href='/blogs/<%= item._id %>'><%= item.title %></a></h5>
+					<p class="card-text"><%= item.content %></p>
+					<a href="/blogs/<%= item._id %>" class="btn btn-small btn-primary">Read More</a>
+				</div>
 			</div>
 		</div>
-		<% }) %>	
+		<% }) %>
 	</div>
 </div>
 <%- include('partials/footer.ejs') %>
