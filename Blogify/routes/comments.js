@@ -12,7 +12,12 @@ router.get('/blogs/:id/comments/new', (req, res) => {
 router.post('/blogs/:id/comments', (req, res) => {
     Comment.create(req.body, (err, createdComment) => {
         if (err) console.log(err);
-        res.redirect('/blogs/' + req.params.id);
+        Blog.findById(req.params.id, async (err, foundBlog) => {
+            if (err) console.log(err);
+            foundBlog.comments.push(createdComment);
+            await foundBlog.save();
+            res.redirect('/blogs/' + req.params.id);
+        });
     });
 });
 

@@ -2,9 +2,25 @@ const mongoose = require('mongoose');
 
 //make schema
 const blogSchema = mongoose.Schema({
-    title: String,
-    content: String,
-    image: String,
+    title: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: false,
+    },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment',
+            required: false,
+        },
+    ],
 });
 //model
 const Blog = mongoose.model('Blog', blogSchema); //blogs

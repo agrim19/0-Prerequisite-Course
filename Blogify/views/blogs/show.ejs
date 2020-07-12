@@ -9,5 +9,22 @@
 <p>
 	<%= blog.content %>
 </p>
-
+<%console.log(blog.comments)%>
+<%console.log(blog)%>
+<% if(blog.comments) {%>
+<hr>
+<h3>Comments</h3>
+<hr>
+<ul>
+	<% blog.comments.forEach((comment)=>{ %>
+	<li>
+		<strong><%=comment.author%></strong>
+		<ul>
+			<li><%=comment.content%></li>
+		</ul>
+	</li>
+	<% }) %>
+</ul>
+<%}%>
+<a class='btn btn-success' href="/blogs/<%= blog._id %>/comments/new">Add a comment</a>
 <%- include('../partials/footer') %>

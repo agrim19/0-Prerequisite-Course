@@ -12,10 +12,12 @@ router.get('/blog/new', (req, res) => {
     res.render('blogs/new');
 });
 router.get('/blogs/:id', (req, res) => {
-    Blog.findById(req.params.id, (err, foundBlog) => {
-        if (err) console.log(err);
-        res.render('blogs/show', {blog: foundBlog});
-    });
+    Blog.findById(req.params.id)
+        .populate('comments')
+        .exec((err, foundBlog) => {
+            if (err) console.log(err);
+            res.render('blogs/show', {blog: foundBlog});
+        });
 });
 
 router.post('/blogs', (req, res) => {
