@@ -1,30 +1,29 @@
-<%- include('../partials/header') %>
-<%- include('../partials/header-close.ejs') %>
-
+<%- include('../partials/header') %> <%-
+include('../partials/header-close.ejs')%>
 
 <h1>
-	<%= blog.title %>
+    <%= blog.title %>
 </h1>
-<hr>
+<hr />
 <p>
-	<%= blog.content %>
+    <%= blog.content %>
 </p>
-<%console.log(blog.comments)%>
-<%console.log(blog)%>
 <% if(blog.comments) {%>
-<hr>
+<hr />
 <h3>Comments</h3>
-<hr>
+<hr />
 <ul>
-	<% blog.comments.forEach((comment)=>{ %>
-	<li>
-		<strong><%=comment.author%></strong>
-		<ul>
-			<li><%=comment.content%></li>
-		</ul>
-	</li>
-	<% }) %>
+    <% blog.comments.forEach((comment)=>{ %>
+    <li>
+        <strong><%=comment.author%></strong>
+        <ul>
+            <li><%=comment.content%></li>
+        </ul>
+    </li>
+    <% }) %>
 </ul>
 <%}%>
-<a class='btn btn-success' href="/blogs/<%= blog._id %>/comments/new">Add a comment</a>
+<a class="btn btn-success" href="/blogs/<%= blog._id %>/comments/new"
+    >Add a comment</a
+>
 <%- include('../partials/footer') %>
