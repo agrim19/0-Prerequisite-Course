@@ -1,29 +1,55 @@
-<%- include('../partials/header') %> <%-
-include('../partials/header-close.ejs')%>
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/stylesheets/blogs/show.css" /> <%-
+include('../partials/header-close.ejs') %>
 
-<h1>
-    <%= blog.title %>
-</h1>
-<hr />
-<p>
-    <%= blog.content %>
-</p>
-<% if(blog.comments) {%>
-<hr />
-<h3>Comments</h3>
-<hr />
-<ul>
-    <% blog.comments.forEach((comment)=>{ %>
-    <li>
-        <strong><%=comment.author%></strong>
-        <ul>
-            <li><%=comment.content%></li>
-        </ul>
-    </li>
-    <% }) %>
-</ul>
-<%}%>
-<a class="btn btn-success" href="/blogs/<%= blog._id %>/comments/new"
-    >Add a comment</a
->
+<div class="container-fluid">
+    <h1>
+        <%= blog.title %>
+    </h1>
+    <hr />
+    <div class="row">
+        <div class="col-9">
+            <p>
+                <%= blog.content %>
+            </p>
+            <% if(blog.comments) {%>
+            <hr />
+            <h3>Comments</h3>
+            <hr />
+            <% blog.comments.forEach((comment)=>{ %>
+            <strong><%=comment.author%></strong>
+            <p><%=comment.content%></p>
+            <hr />
+            <% }) %> <%}%>
+            <a
+                class="btn btn-success"
+                href="/blogs/<%= blog._id %>/comments/new"
+                >Add a comment</a
+            >
+        </div>
+        <div class="col-3">
+            <div class="card" style="width: 18rem;">
+                <img
+                    src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    class="card-img-top"
+                    alt="profile picture"
+                />
+                <div class="card-body">
+                    <h5 class="card-title">John Doe</h5>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Rerum tenetur dolorum rem nobis quibusdam, iusto
+                        provident quisquam, amet ipsam corporis nisi mollitia
+                        magni
+                    </p>
+                    <a
+                        href="mailto: johndoe@example.com"
+                        class="btn btn-primary"
+                        >Write to Me</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <%- include('../partials/footer') %>
