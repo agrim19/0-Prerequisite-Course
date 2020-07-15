@@ -1,14 +1,18 @@
 const express = require('express');
 const app = express();
+//COPY THIS REQUIRE STATEMENT
 const mongoose = require('mongoose');
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 const expressSession = require('express-session');
 const bodyParser = require('body-parser');
 
+//COPY THIS
 app.set('view engine', 'ejs');
 
+//COPY THIS WHOLE MONGOOSE.CONNECT
 mongoose.connect('mongodb://localhost:27017/auth_demo', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -38,6 +42,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //routes
+//--------------------------------------------------------------------------------------------------------------------------------
+//COPY ALL THESE ROUTES BETWEEN THE SEPARATORS
 app.get('/', (req, res) => {
     res.render('home');
 });
@@ -50,6 +56,7 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register');
 });
+//---------------------------------------------------------------------------------------------------------------------------------
 app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
