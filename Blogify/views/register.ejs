@@ -1,0 +1,46 @@
+<%- include('./partials/header') %>
+<link rel="stylesheet" href="/stylesheets/register.css" />
+<%- include('./partials/header-close') %>
+<div class="container">
+    <h1>Register</h1>
+    <hr />
+    <form action="/register" method="POST">
+        <div id="contain">
+            <div class="form-group">
+                <label for="name">Username:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    id="name"
+                    name="username"
+                />
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Email"
+                    id="email"
+                    name="email"
+                />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    id="password"
+                    name="password"
+                />
+            </div>
+            <button class="btn btn-success">
+                Register
+            </button>
+        </div>
+    </form>
+</div>
+
+<%- include('./partials/footer') %>

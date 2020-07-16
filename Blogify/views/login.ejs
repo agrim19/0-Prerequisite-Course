@@ -1,0 +1,36 @@
+<%- include('./partials/header') %>
+<link rel="stylesheet" href="/stylesheets/login.css" />
+<%- include('./partials/header-close') %>
+<div class="container">
+    <h1>Login</h1>
+    <hr />
+    <form action="/login" method="POST">
+        <div id="contain">
+            <div class="form-group">
+                <label for="name">Username:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    id="name"
+                    name="username"
+                />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    id="password"
+                    name="password"
+                />
+            </div>
+            <button class="btn btn-success">
+                Login
+            </button>
+        </div>
+    </form>
+</div>
+
+<%- include('./partials/footer') %>
