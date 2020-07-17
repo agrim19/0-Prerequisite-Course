@@ -15,6 +15,12 @@
 				<a class="nav-link" href="/blogs">Explore</a>
 			</li>
 		</ul>
+		<% if(!currentUser) {%> 
+			<a href="/login" class="btn btn-sm auth-control">Login</a>
+			<a href="/register" class="btn btn-sm auth-control">Register</a>
+		<% }else{ %> 
+			<a href="/logout" class="btn btn-sm auth-control">Logout</a>
+		<% } %> 
 		<a class="btn btn-success btn-sm" href="/blog/new">
 			Add Post
 		</a>
