@@ -8,8 +8,8 @@ const blogRoutes = require('./routes/blogs');
 const indexRoutes = require('./routes/index');
 const LocalStrategy = require('passport-local');
 const ExpressSession = require('express-session');
+const methodOverride = require('method-override');
 const commentRoutes = require('./routes/comments');
-const passportLocalMongoose = require('passport-local-mongoose');
 
 //passport setup
 app.use(
@@ -33,6 +33,9 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     next();
 });
+//method override
+app.use(methodOverride('_method'));
+
 //connect to db
 mongoose.connect('mongodb://localhost:27017/Blogify', {
     useNewUrlParser: true,

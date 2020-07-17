@@ -10,3 +10,6 @@
 .col-9 strong {
     font-size: 1.1rem;
 }
+form {
+    display: inline;
+}
