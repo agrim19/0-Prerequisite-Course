@@ -26,5 +26,18 @@
 		</a>
 	</div>
 </nav>
-
 <body>
+<% if(errorMessage!='') {%> 
+<div class="container">
+	<div class="alert alert-danger" role="alert">
+		<%= errorMessage %> 
+	</div>
+</div>
+<% } %> 
+<% if(successMessage!='') {%> 
+<div class="container">
+	<div class="alert alert-success" role="alert">
+		<%= successMessage %> 
+	</div>
+</div>
+<% } %> 

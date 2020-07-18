@@ -21,6 +21,7 @@ router.get('/register', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.logout();
+    req.flash('success', 'Logged out successfully');
     res.redirect('/blogs');
 });
 
@@ -31,9 +32,11 @@ router.post('/register', (req, res) => {
         (err, user) => {
             if (err) {
                 console.log(err);
+                req.flash('error', 'Something went wrong. Please try again');
                 return res.render('register');
             }
             passport.authenticate('local')(req, res, () => {
+                req.flash('success', 'Welcome to Blogify,' + req.user.username);
                 res.redirect('/blogs');
             });
         }
@@ -44,6 +47,8 @@ router.post(
     passport.authenticate('local', {
         failureRedirect: '/login',
         successRedirect: '/blogs',
+        failureFlash: 'Could not login, try again.',
+        successFlash: 'Welcome Back!',
     }),
     (req, res) => {}
 );

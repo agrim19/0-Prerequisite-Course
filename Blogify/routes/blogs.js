@@ -5,7 +5,11 @@ const Blog = require('../models/blog');
 //index route
 router.get('/blogs', (req, res) => {
     Blog.find({}, (err, data) => {
-        if (err) console.log(err);
+        if (err) {
+            console.log(err);
+            req.flash('error', 'Some error occured. Please try again later.');
+            res.redirect('back');
+        }
         res.render('blogs/index', { data: data });
     });
 });
@@ -39,8 +43,13 @@ router.post('/blogs', isLoggedIn, (req, res) => {
     const newPost = req.body;
     newPost.author = req.user._id;
     Blog.create(newPost, (err, createdBlog) => {
-        if (err) console.log(err);
+        if (err) {
+            req.flash('error', 'Something went wrong. Please try again later');
+            console.log(err);
+            res.redirect('back');
+        }
         console.log(createdBlog);
+        req.flash('success', 'Added Blog Successfully');
         res.redirect('/blogs');
     });
 });
@@ -52,8 +61,10 @@ router.put('/blogs/:id', isOwner, (req, res) => {
         (err, updatedBlog) => {
             if (err) {
                 console.log(err);
+                req.flash('error', 'Something went wrong. Please try again');
                 return res.redirect('/blogs/' + req.params.id + '/edit');
             }
+            req.flash('success', 'Updated Blog Successfully!');
             res.redirect('/blogs/' + req.params.id);
         }
     );
@@ -63,8 +74,10 @@ router.delete('/blogs/:id', isOwner, (req, res) => {
     Blog.findByIdAndDelete(req.params.id, (err) => {
         if (err) {
             console.log(err);
+            req.flash('error', 'Something went wrong. Please try again');
             return res.redirect('/blogs/' + req.params.id);
         }
+        req.flash('success', 'Deleted Blog.');
         res.redirect('/blogs');
     });
 });
@@ -74,6 +87,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
+    req.flash('error', 'Please Login First.');
     res.redirect('/login');
 }
 async function isOwner(req, res, next) {
@@ -88,13 +102,16 @@ async function isOwner(req, res, next) {
             if (foundBlog.author.equals(req.user._id)) {
                 return next();
             } else {
-                alert('NOT AUTHORISED');
+                req.flash('error', 'NOT AUTHORISED');
                 res.redirect('back');
             }
         } catch (err) {
+            req.flash('error', err.message);
             console.log(err);
+            res.redirect('back');
         }
     } else {
+        req.flash('error', 'Please Login First');
         console.log('Not logged in');
         res.redirect('/login');
     }

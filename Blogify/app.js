@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const User = require('./models/user');
+const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const blogRoutes = require('./routes/blogs');
 const indexRoutes = require('./routes/index');
@@ -29,8 +30,11 @@ passport.deserializeUser(User.deserializeUser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+app.use(flash());
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.errorMessage = req.flash('error');
+    res.locals.successMessage = req.flash('success');
     next();
 });
 //method override

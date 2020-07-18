@@ -6,7 +6,11 @@ const Blog = require('../models/blog');
 //new route
 router.get('/blogs/:id/comments/new', isLoggedIn, (req, res) => {
     Blog.findById(req.params.id, (err, foundBlog) => {
-        if (err) console.log(err);
+        if (err) {
+            req.flash('error', 'Something went wrong');
+            console.log(err);
+            res.redirect('back');
+        }
         res.render('comments/new', { blog: foundBlog });
     });
 });
@@ -15,11 +19,20 @@ router.post('/blogs/:id/comments', isLoggedIn, (req, res) => {
     req.body.author = req.user._id;
     req.body.authorName = req.user.username;
     Comment.create(req.body, (err, createdComment) => {
-        if (err) console.log(err);
+        if (err) {
+            req.flash('error', 'Something went wrong');
+            console.log(err);
+            res.redirect('back');
+        }
         Blog.findById(req.params.id, async (err, foundBlog) => {
-            if (err) console.log(err);
+            if (err) {
+                req.flash('error', 'Something went wrong');
+                console.log(err);
+                res.redirect('back');
+            }
             foundBlog.comments.push(createdComment);
             await foundBlog.save();
+            req.flash('success', 'Added comment!');
             res.redirect('/blogs/' + req.params.id);
         });
     });
@@ -28,9 +41,11 @@ router.post('/blogs/:id/comments', isLoggedIn, (req, res) => {
 router.delete('/blogs/:id/comments/:commentId', isOwner, (req, res) => {
     Comment.findByIdAndDelete(req.params.commentId, (err) => {
         if (err) {
+            req.flash('error', 'Something went wrong');
             console.log(err);
             return res.redirect('/blogs/');
         }
+        req.flash('success', 'Deleted comment successfully');
         res.redirect('/blogs/' + req.params.id);
     });
 });
@@ -40,6 +55,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
+    req.flash('error', 'Please login first');
     res.redirect('/login');
 }
 
@@ -55,13 +71,16 @@ async function isOwner(req, res, next) {
             if (foundComment.author.equals(req.user._id)) {
                 return next();
             } else {
-                alert('NOT AUTHORISED');
+                req.flash('error', 'NOT AUTHORISED');
                 res.redirect('back');
             }
         } catch (err) {
+            req.flash('error', 'Something went wrong');
             console.log(err);
+            res.redirect('back');
         }
     } else {
+        req.flash('error', 'Please login first');
         console.log('Not logged in');
         res.redirect('/login');
     }
