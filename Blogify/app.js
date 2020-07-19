@@ -41,10 +41,14 @@ app.use((req, res, next) => {
 app.use(methodOverride('_method'));
 
 //connect to db
-mongoose.connect('mongodb://localhost:27017/Blogify', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+//env variables
+mongoose.connect(
+    'mongodb+srv://aaf:password@123@cluster0.qabfk.mongodb.net/Blogify?retryWrites=true&w=majority',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    }
+);
 
 //routes
 app.use('/blogs', blogRoutes);
