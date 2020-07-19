@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const Comment = require('../models/comment');
 const Blog = require('../models/blog');
 
 //new route
-router.get('/blogs/:id/comments/new', isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     Blog.findById(req.params.id, (err, foundBlog) => {
         if (err) {
             req.flash('error', 'Something went wrong');
@@ -15,7 +15,7 @@ router.get('/blogs/:id/comments/new', isLoggedIn, (req, res) => {
     });
 });
 //create route
-router.post('/blogs/:id/comments', isLoggedIn, (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
     req.body.author = req.user._id;
     req.body.authorName = req.user.username;
     Comment.create(req.body, (err, createdComment) => {
@@ -38,7 +38,7 @@ router.post('/blogs/:id/comments', isLoggedIn, (req, res) => {
     });
 });
 //delete route
-router.delete('/blogs/:id/comments/:commentId', isOwner, (req, res) => {
+router.delete('/:commentId', isOwner, (req, res) => {
     Comment.findByIdAndDelete(req.params.commentId, (err) => {
         if (err) {
             req.flash('error', 'Something went wrong');

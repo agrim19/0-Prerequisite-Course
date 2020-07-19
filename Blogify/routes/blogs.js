@@ -3,7 +3,7 @@ const router = express.Router();
 const Blog = require('../models/blog');
 
 //index route
-router.get('/blogs', (req, res) => {
+router.get('/', (req, res) => {
     Blog.find({}, (err, data) => {
         if (err) {
             console.log(err);
@@ -14,11 +14,11 @@ router.get('/blogs', (req, res) => {
     });
 });
 //new route
-router.get('/blog/new', isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('blogs/new');
 });
 //show route
-router.get('/blogs/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     Blog.findById(req.params.id)
         .populate('comments')
         .populate('author')
@@ -28,7 +28,7 @@ router.get('/blogs/:id', (req, res) => {
         });
 });
 //edit route
-router.get('/blogs/:id/edit', isOwner, (req, res) => {
+router.get('/:id/edit', isOwner, (req, res) => {
     Blog.findById(req.params.id, (err, foundBlog) => {
         if (err) {
             console.log(err);
@@ -39,7 +39,7 @@ router.get('/blogs/:id/edit', isOwner, (req, res) => {
 });
 
 //create route
-router.post('/blogs', isLoggedIn, (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
     const newPost = req.body;
     newPost.author = req.user._id;
     Blog.create(newPost, (err, createdBlog) => {
@@ -54,7 +54,7 @@ router.post('/blogs', isLoggedIn, (req, res) => {
     });
 });
 //update route
-router.put('/blogs/:id', isOwner, (req, res) => {
+router.put('/:id', isOwner, (req, res) => {
     Blog.findByIdAndUpdate(
         req.params.id,
         req.body.newBlog,
@@ -70,7 +70,7 @@ router.put('/blogs/:id', isOwner, (req, res) => {
     );
 });
 //delete route
-router.delete('/blogs/:id', isOwner, (req, res) => {
+router.delete('/:id', isOwner, (req, res) => {
     Blog.findByIdAndDelete(req.params.id, (err) => {
         if (err) {
             console.log(err);

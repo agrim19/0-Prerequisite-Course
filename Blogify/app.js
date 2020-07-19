@@ -47,9 +47,9 @@ mongoose.connect('mongodb://localhost:27017/Blogify', {
 });
 
 //routes
-app.use(indexRoutes);
-app.use(blogRoutes);
-app.use(commentRoutes);
+app.use('/blogs', blogRoutes);
+app.use('/blogs/:id/comments', commentRoutes);
+app.use('', indexRoutes);
 
 //server
 app.listen(3000, () => {
